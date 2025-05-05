@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bolinglish - Aprende inglés y español</title>
+  <style>
+    /* Estilos globales */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #FFD580;
+      color: #4E342E;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    header {
+      background-color: #FF8C42;
+      padding: 20px;
+      color: white;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background-color: #FFE4B5;
+      width: 320px;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .flashcards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .flashcard {
+      width: 140px;
+      height: 80px;
+      perspective: 1000px;
+    }
+    .flashcard-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+    .flashcard:hover .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+    .flashcard-front,
+    .flashcard-back {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.9em;
+      border-radius: 10px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      padding: 5px;
+    }
+    .flashcard-front {
+      background-color: #FF6F3C;
+      color: white;
+    }
+    .flashcard-back {
+      background-color: #FFE4B5;
+      color: #4E342E;
+      transform: rotateY(180deg);
+    }
+    /* Clases para flashcards de colores: muestran el color real */
+    .black .flashcard-front { background-color: black; color: white; }
+    .black .flashcard-back { background-color: black; color: white; }
+    .white .flashcard-front { background-color: white; color: black; }
+    .white .flashcard-back { background-color: white; color: black; }
+    .red .flashcard-front { background-color: red; color: white; }
+    .red .flashcard-back { background-color: red; color: white; }
+    .blue .flashcard-front { background-color: blue; color: white; }
+    .blue .flashcard-back { background-color: blue; color: white; }
+    .green .flashcard-front { background-color: green; color: white; }
+    .green .flashcard-back { background-color: green; color: white; }
+    .yellow .flashcard-front { background-color: yellow; color: black; }
+    .yellow .flashcard-back { background-color: yellow; color: black; }
+    .orange .flashcard-front { background-color: orange; color: white; }
+    .orange .flashcard-back { background-color: orange; color: white; }
+    .purple .flashcard-front { background-color: purple; color: white; }
+    .purple .flashcard-back { background-color: purple; color: white; }
+    .pink .flashcard-front { background-color: pink; color: black; }
+    .pink .flashcard-back { background-color: pink; color: black; }
+    .brown .flashcard-front { background-color: brown; color: white; }
+    .brown .flashcard-back { background-color: brown; color: white; }
+    footer {
+      background-color: #FF6F3C;
+      padding: 10px;
+      color: white;
+      margin-top: 20px;
+    }
+    /* Estilos para la sección final con la imagen */
+    .final-section {
+      margin-top: 20px;
+    }
+    .final-section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .final-section p {
+      font-size: 1.1em;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bolinglish 🌞</h1>
+    <p>Explora 90 flashcards de vocabulario inglés y español</p>
+  </header>
+  
+  <div class="container">
+    <!-- 1. Frases más usadas -->
+    <div class="card">
+      <h2>Frases más usadas</h2>
+      <p>Expresiones comunes en inglés y español.</p>
+      <div class="flashcards-container">
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">How are you?</div>
+            <div class="flashcard-back">¿Cómo estás?</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Nice to meet you!</div>
+            <div class="flashcard-back">¡Encantado de conocerte!</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">What’s your name?</div>
+            <div class="flashcard-back">¿Cuál es tu nombre?</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Where are you from?</div>
+            <div class="flashcard-back">¿De dónde eres?</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">How old are you?</div>
+            <div class="flashcard-back">¿Cuántos años tienes?</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Good morning</div>
+            <div class="flashcard-back">Buenos días</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Good afternoon</div>
+            <div class="flashcard-back">Buenas tardes</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Good night</div>
+            <div class="flashcard-back">Buenas noches</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">See you later</div>
+            <div class="flashcard-back">Hasta luego</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">I'm sorry</div>
+            <div class="flashcard-back">Lo siento</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 2. Palabras más usadas -->
+    <div class="card">
+      <h2>Palabras más usadas</h2>
+      <p>Las palabras comunes en inglés.</p>
+      <div class="flashcards-container">
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">the</div>
+            <div class="flashcard-back">el, la</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">be</div>
+            <div class="flashcard-back">ser, estar</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">to</div>
+            <div class="flashcard-back">a, para</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">of</div>
+            <div class="flashcard-back">de</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">and</div>
+            <div class="flashcard-back">y</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">a</div>
+            <div class="flashcard-back">un, una</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">in</div>
+            <div class="flashcard-back">en</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">that</div>
+            <div class="flashcard-back">ese, esa</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">have</div>
+            <div class="flashcard-back">tener</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">I</div>
+            <div class="flashcard-back">yo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 3. Verduras -->
+    <div class="card">
+      <h2>Verduras</h2>
+      <p>Nombres de verduras en inglés.</p>
+      <div class="flashcards-container">
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Carrot</div>
+            <div class="flashcard-back">Zanahoria</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Potato</div>
+            <div class="flashcard-back">Papa</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Tomato</div>
+            <div class="flashcard-back">Tomate</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Onion</div>
+            <div class="flashcard-back">Cebolla</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Garlic</div>
+            <div class="flashcard-back">Ajo</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Pepper</div>
+            <div class="flashcard-back">Pimiento</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Lettuce</div>
+            <div class="flashcard-back">Lechuga</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Cucumber</div>
+            <div class="flashcard-back">Pepino</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Spinach</div>
+            <div class="flashcard-back">Espinaca</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Broccoli</div>
+            <div class="flashcard-back">Brócoli</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 4. Animales -->
+    <div class="card">
+      <h2>Animales</h2>
+      <p>Animales en inglés.</p>
+      <div class="flashcards-container">
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Dog</div>
+            <div class="flashcard-back">Perro</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Cat</div>
+            <div class="flashcard-back">Gato</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Bird</div>
+            <div class="flashcard-back">Pájaro</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Fish</div>
+            <div class="flashcard-back">Pez</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Horse</div>
+            <div class="flashcard-back">Caballo</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Cow</div>
+            <div class="flashcard-back">Vaca</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Pig</div>
+            <div class="flashcard-back">Cerdo</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Sheep</div>
+            <div class="flashcard-back">Oveja</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Goat</div>
+            <div class="flashcard-back">Cabra</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Rabbit</div>
+            <div class="flashcard-back">Conejo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 5. Clima -->
+    <div class="card">
+      <h2>Clima</h2>
+      <p>Palabras relacionadas con el clima.</p>
+      <div class="flashcards-container">
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Sunny</div>
+            <div class="flashcard-back">Soleado</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Rainy</div>
+            <div class="flashcard-back">Lluvioso</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Cloudy</div>
+            <div class="flashcard-back">Nublado</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Windy</div>
+            <div class="flashcard-back">Ventoso</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Snowy</div>
+            <div class="flashcard-back">Nevado</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Stormy</div>
+            <div class="flashcard-back">Tormentoso</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Foggy</div>
+            <div class="flashcard-back">Brumoso</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Humid</div>
+            <div class="flashcard-back">Húmedo</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Dry</div>
+            <div class="flashcard-back">Seco</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Mild</div>
+            <div class="flashcard-back">Templado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 6. Colores -->
+    <div class="card">
+      <h2>Colores</h2>
+      <p>Colores en inglés.</p>
+      <div class="flashcards-container">
+        <div class="flashcard black">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Black</div>
+            <div class="flashcard-back">Negro</div>
+          </div>
+        </div>
+        <div class="flashcard white">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">White</div>
+            <div class="flashcard-back">Blanco</div>
+          </div>
+        </div>
+        <div class="flashcard red">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Red</div>
+            <div class="flashcard-back">Rojo</div>
+          </div>
+        </div>
+        <div class="flashcard blue">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Blue</div>
+            <div class="flashcard-back">Azul</div>
+          </div>
+        </div>
+        <div class="flashcard green">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Green</div>
+            <div class="flashcard-back">Verde</div>
+          </div>
+        </div>
+        <div class="flashcard yellow">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Yellow</div>
+            <div class="flashcard-back">Amarillo</div>
+          </div>
+        </div>
+        <div class="flashcard orange">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Orange</div>
+            <div class="flashcard-back">Naranja</div>
+          </div>
+        </div>
+        <div class="flashcard purple">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Purple</div>
+            <div class="flashcard-back">Morado</div>
+          </div>
+        </div>
+        <div class="flashcard pink">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Pink</div>
+            <div class="flashcard-back">Rosa</div>
+          </div>
+        </div>
+        <div class="flashcard brown">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Brown</div>
+            <div class="flashcard-back">Marrón</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 7. Partes del cuerpo -->
+    <div class="card">
+      <h2>Partes del cuerpo</h2>
+      <p>Nombres de partes del cuerpo en inglés.</p>
+      <div class="flashcards-container">
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Head</div>
+            <div class="flashcard-back">Cabeza</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Eye</div>
+            <div class="flashcard-back">Ojo</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Ear</div>
+            <div class="flashcard-back">Oreja</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Nose</div>
+            <div class="flashcard-back">Nariz</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Mouth</div>
+            <div class="flashcard-back">Boca</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Hand</div>
+            <div class="flashcard-back">Mano</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Arm</div>
+            <div class="flashcard-back">Brazo</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Leg</div>
+            <div class="flashcard-back">Pierna</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Foot</div>
+            <div class="flashcard-back">Pie</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Heart</div>
+            <div class="flashcard-back">Corazón</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 8. Viajes -->
+    <div class="card">
+      <h2>Viajes</h2>
+      <p>Vocabulario para viajar en inglés.</p>
+      <div class="flashcards-container">
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Airport</div>
+            <div class="flashcard-back">Aeropuerto</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Luggage</div>
+            <div class="flashcard-back">Equipaje</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Ticket</div>
+            <div class="flashcard-back">Boleto</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Passport</div>
+            <div class="flashcard-back">Pasaporte</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Hotel</div>
+            <div class="flashcard-back">Hotel</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Reservation</div>
+            <div class="flashcard-back">Reserva</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Map</div>
+            <div class="flashcard-back">Mapa</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Bus</div>
+            <div class="flashcard-back">Autobús</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Train</div>
+            <div class="flashcard-back">Tren</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Taxi</div>
+            <div class="flashcard-back">Taxi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 9. Bebidas -->
+    <div class="card">
+      <h2>Bebidas</h2>
+      <p>Vocabulario de bebidas en inglés.</p>
+      <div class="flashcards-container">
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Water</div>
+            <div class="flashcard-back">Agua</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Coffee</div>
+            <div class="flashcard-back">Café</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Tea</div>
+            <div class="flashcard-back">Té</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Juice</div>
+            <div class="flashcard-back">Jugo</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Milk</div>
+            <div class="flashcard-back">Leche</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Soda</div>
+            <div class="flashcard-back">Refresco</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Beer</div>
+            <div class="flashcard-back">Cerveza</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Wine</div>
+            <div class="flashcard-back">Vino</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Lemonade</div>
+            <div class="flashcard-back">Limonada</div>
+          </div>
+        </div>
+        <div class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">Smoothie</div>
+            <div class="flashcard-back">Batido</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Sección final con la imagen -->
+  <div class="final-section">
+    <img src="https://i.postimg.cc/sBFQjzrt/LAFOTO.jpg" alt="Trabajo final ing guillermo gutierrez sorioco">
+    <p>Trabajo final ing guillermo gutierrez sorioco</p>
+  </div>
+  
+  <footer>
+    <p>Bolinglish - Aprende con estilo y diversión</p>
+  </footer>
+</body>
+</html>
